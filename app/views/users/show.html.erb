@@ -1,0 +1,58 @@
+<h1> Welcome <%= @user.first_name %> </h1> 
+
+<fieldset>
+<legend> <%= "#{@user.first_name}'s Stats" %> </legend>
+    <p> First Name: <%= @user.first_name %> </p>
+    <p> Last Name: <%= @user.last_name %> </p> 
+</fieldset> 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<fieldset>
+<legend> <%= "#{@user.first_name}'s Workouts" %> </legend>
+    <% @workouts.each do |workout| %> 
+    <li> <%= workout.name %></li> 
+    <% end %> 
+</fieldset> 
+
+
+<% if false %> 
+
+<p>
+<%= f.label :bio %> 
+<%= f.text_field :bio %>
+</p>
+
+
+<p>
+<%= f.label :birthday %> 
+<%= f.text_field :birthday %>
+</p>
+
+<p>
+<%= f.label :email %> 
+<%= f.text_field :email %>
+</p>
+
+<p>
+<%= f.label :height_inches, "Height (Inches)" %> 
+<%= f.text_field :height_inches %>
+</p>
+
+<p>
+<%= f.label :weight_pounds, "Weight (Pounds)" %> 
+<%= f.text_field :weight_pounds %>
+</p>
+
+<p>
+<%= f.label :weight_pounds, "Weight (Pounds)" %> 
+<%= f.text_field :weight_pounds %>
+</p>
+
+<% end %> 
