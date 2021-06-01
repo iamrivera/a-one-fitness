@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_06_01_152438) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
+    t.string "password_digest"
     t.text "bio"
     t.string "birthday"
     t.integer "height_inches"
