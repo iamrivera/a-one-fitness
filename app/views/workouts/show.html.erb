@@ -1,0 +1,8 @@
+Name: <%= @workout.name %> 
+
+Description: <%= @workout.description %> 
+
+Exercises: 
+<% @workout.exercises.each do |e|  %>
+    <li>  <%= e.name %> </li>
+<% end %> 

@@ -19,6 +19,8 @@
     <% @workouts.each do |workout| %> 
     <li> <%= workout.name %></li> 
     <% end %> 
+
+    <%= button_to "Create Your Own Workout", new_workout_path, method: :get  %> 
 </fieldset> 
 
 
