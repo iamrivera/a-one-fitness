@@ -16,6 +16,7 @@ class WorkoutsController < ApplicationController
     end
 
     def show
+        @user = User.find(session[:id]) 
         @workout = Workout.find(params[:id])
     end
 

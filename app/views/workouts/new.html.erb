@@ -15,7 +15,7 @@
             <br /> 
             <br /> 
 
-            Choose Exercise: <%= workout_form.collection_select :exercise_ids, Exercise.all, :id, :name %>
+            Choose Exercise(s): <%= workout_form.collection_select :exercise_ids, Exercise.all, :id, :name, {}, {multiple: true}%>
 
             <br /> 
             <br /> 
