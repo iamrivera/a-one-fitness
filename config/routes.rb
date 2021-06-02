@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :exercises
   resources :workouts
   resources :trainers
-  resources :users
+  resources :users do
+    resources :workouts 
+  end
 
   get 'signup', to: 'users#new', as: :signup #this gives us path helper
   get 'login', to: 'sessions#new', as: :login 

@@ -8,11 +8,11 @@ class ExercisesController < ApplicationController
     end
 
     def create
-
+        @exercise = Exercise.create()
     end
 
     def show
-
+        @exercise = Exercise.find(params[:id])
     end
 
     def edit
@@ -21,5 +21,10 @@ class ExercisesController < ApplicationController
 
     def update
         
+    end
+
+    def destroy
+        @exercise = Exercise.find(params[:id])
+        @exercise.destory 
     end
 end

@@ -9,6 +9,7 @@ class WorkoutsController < ApplicationController
 
     def create
         @workout = Workout.create(workout_params)
+        raise params.inspect
         redirect_to workout_path(@workout)
     end
 
@@ -24,6 +25,12 @@ class WorkoutsController < ApplicationController
     def update
         
     end
+
+    def destroy
+        @workout = Workout.find(params[:id])
+        @workout.destroy 
+        redirect_to user_path(params[:user_id])
+    end 
 
     private 
 

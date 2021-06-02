@@ -5,23 +5,22 @@
     <p> First Name: <%= @user.first_name %> </p>
     <p> Last Name: <%= @user.last_name %> </p> 
 </fieldset> 
+
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
 <fieldset>
 <legend> <%= "#{@user.first_name}'s Workouts" %> </legend>
     <% @workouts.each do |workout| %> 
-    <li> <%= workout.name %></li> 
-    <% end %> 
-
-    <%= button_to "Create Your Own Workout", new_workout_path, method: :get  %> 
+        <p>
+        <div style="float: left; width: auto;"> <%= link_to workout.name, workout_path(workout) %></div> <%= button_to "Remove Workout" , workout_path(workout), method: :delete %>  
+        </p>
+        <br />
+    <% end %>
 </fieldset> 
-
+<br />
+<br />
+<%= button_to "Create Your Own Workout", new_workout_path, method: :get  %> 
 
 <% if false %> 
 
