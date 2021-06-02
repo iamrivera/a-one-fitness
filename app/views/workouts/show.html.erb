@@ -1,8 +1,15 @@
+<br /> 
+
+<fieldset> 
+<legend> Workout Summary </legend> 
 Name: <%= @workout.name %> 
-
+<br />
 Description: <%= @workout.description %> 
+</fieldset>
 
-Exercises: 
-<% @workout.exercises.each do |e|  %>
-    <li>  <%= e.name %> </li>
-<% end %> 
+<fieldset> 
+<legend> Exercises </legend>
+    <% @workout.exercises.each do |e|  %>
+        <li>  <%=link_to  e.name, exercise_path(e) %> </li>
+    <% end %> 
+</fieldset>
