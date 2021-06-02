@@ -9,7 +9,6 @@ class WorkoutsController < ApplicationController
 
     def create
         @workout = Workout.create(workout_params)
-        raise params.inspect
         redirect_to workout_path(@workout)
     end
 

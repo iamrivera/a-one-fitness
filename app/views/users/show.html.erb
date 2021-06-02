@@ -11,7 +11,7 @@
 
 <fieldset>
 <legend> <%= "#{@user.first_name}'s Workouts" %> </legend>
-    <% @workouts.each do |workout| %> 
+    <% @user.workouts.each do |workout| %> 
         <p>
         <div style="float: left; width: auto;"> <%= link_to workout.name, workout_path(workout) %></div> <%= button_to "Remove Workout" , workout_path(workout), method: :delete %>  
         </p>

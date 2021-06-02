@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     private 
 
     def user_params #signup vs #edit params 
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, workout_ids: [])
     end
 
 end
