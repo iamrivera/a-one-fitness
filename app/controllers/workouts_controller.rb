@@ -5,6 +5,7 @@ class WorkoutsController < ApplicationController
 
     def new
         @workout = Workout.new
+        @user = User.find(session[:id])
     end
 
     def create
