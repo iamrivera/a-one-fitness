@@ -1,9 +1,37 @@
 <h1> Welcome <%= @user.first_name %> </h1> 
 
 <fieldset>
-<legend> <%= "#{@user.first_name}'s Stats" %> </legend>
+<legend> <%= "#{@user.first_name}'s Basic Info" %> </legend>
     <p> First Name: <%= @user.first_name %> </p>
     <p> Last Name: <%= @user.last_name %> </p> 
+    <p> Email: <%= @user.email %> </p>
+</fieldset> 
+
+<br />
+<br />
+
+<fieldset>
+<legend> <%= "#{@user.first_name}'s Stats" %> </legend>
+    <%= form_for @user do |user_form| %> 
+        <%= user_form.label :bio %> 
+        <%= user_form.text_field :bio, placeholder: "Tell us about Yourself" %>
+            <br />
+            <br />
+        <%= user_form.label :birthday %> 
+        <%= user_form.text_field :birthday, placeholder: "Age is only a number!" %>
+            <br />
+            <br />
+        <%= user_form.label :height_inches, value: "Height (in)" %> 
+        <%= user_form.text_field :height_inches, placeholder: "6ft is 72 inches" %>
+            <br />
+            <br />
+        <%= user_form.label :weight_pounds, value: "Weight (lbs)" %> 
+        <%= user_form.text_field :weight_pounds, placeholder: "There is no wrong answer!" %>
+            <br />
+            <br />
+
+        <%= user_form.submit %> 
+    <% end %> 
 </fieldset> 
 
 <br />
@@ -11,11 +39,15 @@
 
 <fieldset>
 <legend> <%= "#{@user.first_name}'s Workouts" %> </legend>
-    <% @user.workouts.each do |workout| %> 
-        <p>
-        <div style="float: left; width: auto;"> <%= link_to workout.name, workout_path(workout) %></div> <%= button_to "Remove Workout" , workout_path(workout), method: :delete %>  
-        </p>
-        <br />
+    <% if @user.workouts.empty? %>
+        You don't have any workouts yet! Hit the button below to get working!
+        <% else %> 
+            <% @user.workouts.each do |workout| %> 
+                <p>
+                <div style="float: left; width: auto;"> <%= link_to workout.name, workout_path(workout) %></div> <%= button_to "Remove Workout" , workout_path(workout), method: :delete %>  
+                </p>
+                <br />
+            <% end %> 
     <% end %>
 </fieldset> 
 <br />

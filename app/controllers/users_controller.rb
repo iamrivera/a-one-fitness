@@ -19,17 +19,20 @@ class UsersController < ApplicationController
     end
 
     def edit
-
+        @user = User.find(params[:id])
     end
 
     def update
-        
+        @user = User.find(params[:id])
+        @user.update(bio: params[:user][:bio], birthday: params[:user][:birthday], height_inches: params[:user][:height_inches], weight_pounds: params[:user][:weight_pounds])
+
+        redirect_to user_path(@user)
     end
 
     private 
 
     def user_params #signup vs #edit params 
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, workout_ids: [])
+        params.require(:user).permit(:first_name, :last_name, :email, :bio, :birthday, :height_inches, :weight_pounds, :password, :password_confirmation, workout_ids: [])
     end
 
 end
