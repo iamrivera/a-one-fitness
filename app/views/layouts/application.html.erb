@@ -14,7 +14,8 @@
     <nav>
       <%= link_to "Workouts", workouts_path %>
       <% if logged_in? %> 
-        <%= link_to "Logout", logout_path %> 
+        <%= link_to "Logout", logout_path %>
+        <%= link_to "Edit Profile", edit_user_path %>
       <% else %> 
         <%= link_to "Signup", signup_path %>
         <%= link_to "Login", login_path %>
