@@ -1,15 +1,31 @@
-<%= form_for @workout do |workout_form| %> 
+<br /> 
+<fieldset> 
+    <legend> Create A Workout! </legend> 
+        <%= form_for @workout do |workout_form| %> 
 
-    <%= workout_form.label :name %> 
-    <%= workout_form.text_field :name %> 
+            <%= workout_form.label :name %> 
+            <%= workout_form.text_field :name %> 
 
-    <%= workout_form.label :description %> 
-    <%= workout_form.text_field :description %>
+            <br /> 
+            <br /> 
+            
+            <%= workout_form.label :description %> 
+            <%= workout_form.text_field :description %>
 
-    Choose Exercise: <%= workout_form.collection_select :exercise_ids, Exercise.all, :id, :name %>
-    <%= workout_form.fields_for :exercises, @workout.exercises.build do |exercise| %> 
-        <%= exercise.text_field :name %>
-    <% end %> 
+            <br /> 
+            <br /> 
 
-    <%= workout_form.submit %> 
-<% end %> 
+            Choose Exercise: <%= workout_form.collection_select :exercise_ids, Exercise.all, :id, :name %>
+
+            <br /> 
+            <br /> 
+            <br /> 
+
+            Add A Custom Exercise:
+            <%= workout_form.fields_for :exercises, @workout.exercises.build do |exercise| %> 
+                <%= exercise.text_field :name %>
+            <% end %> 
+
+            <%= workout_form.submit %> 
+        <% end %> 
+</fieldset>
