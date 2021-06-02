@@ -1,6 +1,7 @@
 class WorkoutsController < ApplicationController
     def index
-
+        @user = User.find(session[:id])
+        @workouts = Workout.all
     end
 
     def new

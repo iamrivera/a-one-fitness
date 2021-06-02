@@ -1,0 +1,9 @@
+<h1> A1 Fitness Workouts </h1>
+<h3> Taking a Serious Stake in Your Fitness since 1831 <h3> 
+
+<uL>
+    <% @workouts.each do |workout| %> 
+        <li> <%= link_to workout.name, workout_path(workout) %> </li>
+    <% end %> 
+</ul> 
+ 

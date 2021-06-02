@@ -12,6 +12,7 @@ class ExercisesController < ApplicationController
     end
 
     def show
+        @user = User.find(session[:id]) 
         @exercise = Exercise.find(params[:id])
     end
 
