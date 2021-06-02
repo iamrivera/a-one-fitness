@@ -5,10 +5,10 @@ class Workout < ApplicationRecord
     has_many :users, through: :user_workouts 
     accepts_nested_attributes_for :exercises
 
-    def exercises_attributes=(exercise_attributes)
-        exercise_attributes.values.each do |exercise_attribute|
-            exercise = Exercise.find_or_create_by(exercise_attribute)
-            self.categories << exercise
+    def exercises_attributes=(exercises_hashes)
+        exercises_hashes.each do |i, exercise_attributes| 
+            exercise = Exercise.find_or_create_by(name: exercise_attributes[:name])
+            self.workout_exercises.build(exercise: exercise) 
         end
     end
 end

@@ -10,12 +10,11 @@ class WorkoutsController < ApplicationController
     def create
         @workout = Workout.create(workout_params)
         redirect_to workout_path(@workout)
-
-
     end
 
     def show
-        @workout = Workout.find(session[:id])
+        # raise params.inspect
+        @workout = Workout.find(params[:id])
     end
 
     def edit
@@ -29,6 +28,6 @@ class WorkoutsController < ApplicationController
     private 
 
     def workout_params
-        params.require(:workout).permit(:name, :description)
+        params.require(:workout).permit(:name, :description, exercise_ids: [], exercises_attributes: [:name])
     end
 end

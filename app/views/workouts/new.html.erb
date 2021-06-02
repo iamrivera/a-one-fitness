@@ -1,15 +1,15 @@
-<%= form_for @workout do |f| %> 
+<%= form_for @workout do |workout_form| %> 
 
-    <%= f.label :name %> 
-    <%= f.text_field :name %> 
+    <%= workout_form.label :name %> 
+    <%= workout_form.text_field :name %> 
 
-    <%= f.label :description %> 
-    <%= f.text_field :description %>
+    <%= workout_form.label :description %> 
+    <%= workout_form.text_field :description %>
 
-    Choose Exercise: <%= f.collection_select :exercise_ids, Exercise.all, :id, :name %>
-    <%= f.fields_for :exercises, @workout.exercises.build do |exercise| %> 
+    Choose Exercise: <%= workout_form.collection_select :exercise_ids, Exercise.all, :id, :name %>
+    <%= workout_form.fields_for :exercises, @workout.exercises.build do |exercise| %> 
         <%= exercise.text_field :name %>
     <% end %> 
 
-    <%= f.submit %> 
+    <%= workout_form.submit %> 
 <% end %> 
