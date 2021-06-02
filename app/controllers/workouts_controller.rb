@@ -9,6 +9,8 @@ class WorkoutsController < ApplicationController
 
     def create
         @workout = Workout.create(workout_params)
+        @user = User.find(session[:id])
+        @user.workouts << @workout
         redirect_to workout_path(@workout)
     end
 
