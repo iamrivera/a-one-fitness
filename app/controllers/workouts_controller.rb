@@ -15,12 +15,11 @@ class WorkoutsController < ApplicationController
     end
 
     def show
-        # raise params.inspect
         @workout = Workout.find(params[:id])
     end
 
     def edit
-
+        
     end
 
     def update
@@ -28,6 +27,7 @@ class WorkoutsController < ApplicationController
     end
 
     def destroy
+        raise params.inspect
         @workout = Workout.find(params[:id])
         @workout.destroy 
         redirect_to user_path(params[:user_id])
