@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :workouts 
   end
 
+  post 'users/:id/workouts/:id/remove', to: 'workouts#remove', as: :remove_workout 
+
   #Basic Sessions Controller Setup (See Seesions Controllers Lab)
   get 'login', to: 'sessions#new', as: :login 
 

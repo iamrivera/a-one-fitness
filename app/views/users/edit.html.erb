@@ -1,18 +1,21 @@
 <h1> Welcome <%= @user.first_name %> </h1> 
 
 <fieldset>
-<legend> <%= "#{@user.first_name}'s Basic Info" %> </legend>
-    <p> First Name: <%= @user.first_name %> </p>
-    <p> Last Name: <%= @user.last_name %> </p> 
-    <p> Email: <%= @user.email %> </p>
-</fieldset> 
-
-<br />
-<br />
-
-<fieldset>
 <legend> <%= "#{@user.first_name}'s Stats" %> </legend>
     <%= form_for @user do |user_form| %>
+
+        <%= user_form.label :first_name %> 
+        <%= user_form.text_field :first_name %> 
+            <br /> 
+            <br /> 
+        <%= user_form.label :last_name %> 
+        <%= user_form.text_field :last_name %> 
+            <br /> 
+            <br /> 
+        <%= user_form.label :email %> 
+        <%= user_form.text_field :email %> 
+            <br /> 
+            <br /> 
         <%= user_form.label :bio %> 
         <%= user_form.text_field :bio, placeholder: "Tell us about Yourself" %>
             <br />
@@ -44,7 +47,7 @@
         <% else %> 
             <% @user.workouts.each do |workout| %> 
                 <p>
-                <div style="float: left; width: auto;"> <%= link_to workout.name, workout_path(workout) %></div> <%= button_to "Remove Workout" , user_path(@user), method: :patch %>  
+                <div style="float: left; width: auto;"> <%= link_to workout.name, workout_path(workout) %></div> <%= button_to "Remove Workout" , remove_workout_path(workout) %>  
                 </p>
                 <br />
             <% end %> 
@@ -52,5 +55,5 @@
 </fieldset> 
 <br />
 <br />
-<%= button_to "Create Your Own Workout", new_user_workout_path(@user), method: :get  %> 
+
 

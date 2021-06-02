@@ -26,6 +26,13 @@ class WorkoutsController < ApplicationController
         
     end
 
+    def remove
+        @workout = Workout.find(params[:id])
+        @user = User.find(session[:id]) 
+        @user.workouts.delete(@workout)
+        redirect_to user_path(@user)
+    end
+
     def destroy
         raise params.inspect
         @workout = Workout.find(params[:id])
