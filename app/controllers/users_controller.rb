@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    before_action :require_login
+    skip_before_action :require_login, only: [:new, :create]
+
     def index
 
     end
@@ -9,7 +12,8 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        # session[:id] = @user.id 
+        set_session(@user)
+        binding.pry
         redirect_to user_path(@user)
     end
 
@@ -32,7 +36,7 @@ class UsersController < ApplicationController
     private 
 
     def user_params #signup vs #edit params 
-        params.require(:user).permit(:first_name, :last_name, :email, :bio, :birthday, :height_inches, :weight_pounds, :password, :password_confirmation, workout_ids: [])
+        params.require(:user).permit(:username, :first_name, :last_name, :email, :bio, :birthday, :height_inches, :weight_pounds, :password, :password_confirmation, workout_ids: [])
     end
 
     def require_login

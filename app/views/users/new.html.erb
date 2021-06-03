@@ -4,6 +4,12 @@
 <legend>Basic User Information</legend>
 
 <%= form_for @user do |f| %> 
+
+    <p>
+    <%= f.label :username %> 
+    <%= f.text_field :username %>
+    </p>
+
     <p>
     <%= f.label :first_name %> 
     <%= f.text_field :first_name %>

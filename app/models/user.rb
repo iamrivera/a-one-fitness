@@ -4,6 +4,8 @@ class User < ApplicationRecord
     has_many :workouts,  through: :user_workouts
     has_many :exercises, through: :workouts
     
+    # validates :username, presence: true
+    # validates :username, uniqueness: true 
 
     def name 
         first_name + " " + last_name
