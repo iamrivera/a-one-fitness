@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        session[:id] = @user.id 
+        # session[:id] = @user.id 
         redirect_to user_path(@user)
     end
 
@@ -33,6 +33,10 @@ class UsersController < ApplicationController
 
     def user_params #signup vs #edit params 
         params.require(:user).permit(:first_name, :last_name, :email, :bio, :birthday, :height_inches, :weight_pounds, :password, :password_confirmation, workout_ids: [])
+    end
+
+    def require_login
+        return head(:forbidden) unless session.include? :user_id 
     end
 
 end
