@@ -5,19 +5,19 @@ class WorkoutsController < ApplicationController
 
     def new
         @workout = Workout.new
-        @user = User.find(session[:id])
+        current_user
     end
 
     def create
         # @user = User.find(session[:id]) #replace with current_user
-          @workout = current_user.workouts.create(workout_params.merge(creator: current_user.name))
+        @workout = current_user.workouts.create(workout_params.merge(creator: current_user.name))
         # @user.workouts << @workout
 
         redirect_to workout_path(@workout)
     end
 
     def show
-        @user = User.find(session[:id]) 
+        current_user 
         @workout = Workout.find(params[:id])
     end
 
@@ -40,7 +40,6 @@ class WorkoutsController < ApplicationController
     end
 
     def destroy
-        raise params.inspect
         @workout = Workout.find(params[:id])
         @workout.destroy 
         redirect_to user_path(params[:user_id])

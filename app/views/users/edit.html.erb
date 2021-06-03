@@ -1,8 +1,8 @@
-<h1> Welcome <%= @user.first_name %> </h1> 
+<h1> Welcome <%= current_user.first_name %> </h1> 
 
 <fieldset>
-<legend> <%= "#{@user.first_name}'s Stats" %> </legend>
-    <%= form_for @user do |user_form| %>
+<legend> <%= "#{current_user.first_name}'s Stats" %> </legend>
+    <%= form_for current_user do |user_form| %>
 
         <%= user_form.label :first_name %> 
         <%= user_form.text_field :first_name %> 
@@ -41,11 +41,11 @@
 <br />
 
 <fieldset>
-<legend> <%= "#{@user.first_name}'s Workouts" %> </legend>
-    <% if @user.workouts.empty? %>
+<legend> <%= "#{current_user.first_name}'s Workouts" %> </legend>
+    <% if current_user.workouts.empty? %>
         You don't have any workouts yet! Hit the button below to get working!
         <% else %> 
-            <% @user.workouts.each do |workout| %> 
+            <% current_user.workouts.each do |workout| %> 
                 <p>
                 <div style="float: left; width: auto;"> <%= link_to workout.name, workout_path(workout) %></div> <%= button_to "Remove Workout" , remove_workout_path(workout) %>  
                 </p>
@@ -55,5 +55,5 @@
 </fieldset> 
 <br />
 <br />
-<%= button_to "Create Your Own Workout", new_user_workout_path(@user), method: :get  %> 
+<%= button_to "Create Your Own Workout", new_user_workout_path(current_user), method: :get  %> 
 
