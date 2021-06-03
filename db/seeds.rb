@@ -10,3 +10,4 @@
 
   exercises = Exercise.create([{ name: 'Force Push' }, { name: 'Force Jump' }, {name: 'Force Pull'}, {name: 'Force Run'}, {name: 'Force Stretch'}])
   
+  
