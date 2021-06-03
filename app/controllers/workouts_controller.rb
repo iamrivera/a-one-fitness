@@ -10,14 +10,13 @@ class WorkoutsController < ApplicationController
 
     def create
         # @user = User.find(session[:id]) #replace with current_user
-        @workout = current_user.workouts.create(workout_params.merge(creator: current_user.name))
+        @workout = current_user.workouts.create(workout_params.merge(creator: current_user.username))
         # @user.workouts << @workout
 
         redirect_to workout_path(@workout)
     end
 
     def show
-        current_user 
         @workout = Workout.find(params[:id])
     end
 
@@ -50,4 +49,5 @@ class WorkoutsController < ApplicationController
     def workout_params
         params.require(:workout).permit(:name, :description, exercise_ids: [], exercises_attributes: [:name])
     end
+
 end

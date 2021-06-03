@@ -15,4 +15,5 @@ class Workout < ApplicationRecord
             end
         end
     end
+
 end

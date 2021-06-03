@@ -15,5 +15,10 @@ Creator: <%= @workout.creator %>
         <li>  <%=link_to  e.name, exercise_path(e) %> </li>
     <% end %> 
 </fieldset>
+<br /> 
 
-<%= link_to 'Edit Workout', edit_workout_path(@workout) %>
+<% if !logged_in? %>
+    Signup today to get started on your fitness journey!
+<% elsif  @workout.creator == current_user.username %> 
+    <%= link_to 'Edit Workout', edit_workout_path(@workout) %>
+<% end %> 
