@@ -11,10 +11,11 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.create(user_params)
-        set_session(@user)
-        binding.pry
-        redirect_to user_path(@user)
+        if existing_user 
+            login_user(existing_user)
+        else
+            signup_user
+        end
     end
 
     def show
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find(session[:id])
+        @current_user
     end
 
     def update
@@ -43,4 +44,21 @@ class UsersController < ApplicationController
         return head(:forbidden) unless session.include? :user_id 
     end
 
+    
+    def existing_user
+        @user = User.find_by(username: params[:user][:username])
+    end
+    
+    
+    def login_user(user)
+        return head(:forbidden) unless @user.authenticate(params[:password])
+        session[:user_id] = @user.id 
+        redirect_to user_path(@user)
+    end
+
+    def signup_user
+        @user = User.create(user_params)
+        set_session(@user)
+        redirect_to user_path(@user)
+    end
 end
