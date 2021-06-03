@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_06_01_152438) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.text "bio"
-    t.string "birthday"
+    t.text "bio", default: "Please fill me in!"
+    t.string "birthday", default: "Please fill me in!"
     t.integer "height_inches"
     t.integer "weight_pounds"
     t.boolean "is_trainer", default: false

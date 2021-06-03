@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :exercises
-  resources :workouts
+  
+  resources :workouts do 
+    resources :exercises 
+  end
   # resources :trainers
   resources :users
+
   resources :users do
     resources :workouts 
   end

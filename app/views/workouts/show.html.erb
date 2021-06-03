@@ -5,6 +5,8 @@
 Name: <%= @workout.name %> 
 <br />
 Description: <%= @workout.description %> 
+<br />
+Creator: <%= @workout.creator %> 
 </fieldset>
 
 <fieldset> 
@@ -13,3 +15,5 @@ Description: <%= @workout.description %>
         <li>  <%=link_to  e.name, exercise_path(e) %> </li>
     <% end %> 
 </fieldset>
+
+<%= link_to 'Edit Workout', edit_workout_path(@workout) %>

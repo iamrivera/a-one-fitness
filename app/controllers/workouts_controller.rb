@@ -1,6 +1,5 @@
 class WorkoutsController < ApplicationController
     def index
-        @user = User.find(session[:id])
         @workouts = Workout.all
     end
 
@@ -10,9 +9,10 @@ class WorkoutsController < ApplicationController
     end
 
     def create
-        @workout = Workout.create(workout_params)
-        @user = User.find(session[:id])
-        @user.workouts << @workout
+        # @user = User.find(session[:id]) #replace with current_user
+          @workout = current_user.workouts.create(workout_params.merge(creator: current_user.name))
+        # @user.workouts << @workout
+
         redirect_to workout_path(@workout)
     end
 
@@ -22,11 +22,14 @@ class WorkoutsController < ApplicationController
     end
 
     def edit
-        
+        # @user = User.find(session[:id])
+        @workout = Workout.find(params[:id])
     end
 
     def update
-        
+        @workout = Workout.find(params[:id])
+        @workout.update(workout_params)
+        redirect_to workout_path(@workout)
     end
 
     def remove
