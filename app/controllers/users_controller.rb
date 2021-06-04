@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    # before_action :require_login
-    # skip_before_action :require_login, only: [:new, :create, :show, :index]
+    before_action :require_login
+    skip_before_action :require_login, only: [:new, :create, :show, :index]
 
     def index
         @users = User.all
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     def create
         if existing_user 
-            binding.pry
+            # binding.pry
             login_user(existing_user)
         else
             signup_user
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        # binding.pry
         @workouts = Workout.all
     end
 
