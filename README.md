@@ -1,5 +1,5 @@
 
-# docportal
+# A1 Fitness
 
 Welcome to A1 Fitness! 
 A1 Fitness was created to simulate a basic web application that manages an online fitness community. Users can register to create workouts using a library of existing exercies and/or by creating their own. All users must register directly via the platform or using Omniauth.
