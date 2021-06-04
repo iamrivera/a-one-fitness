@@ -1,5 +1,11 @@
 <h1> A1 Fitness Workouts </h1>
-<h3> Taking a Serious Stake in Your Fitness since 1831 <h3> 
+<h3> Taking a Serious Stake in Your Fitness since 1831 <h3>
+
+  <h3>Filter Workouts:</h3>
+  <%= form_tag("/workouts", method: "get") do %>
+    <%= select_tag "user", options_from_collection_for_select(@users, "id", "username"), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
 
 <uL>
     <% @workouts.each do |workout| %> 
