@@ -11,17 +11,22 @@ class UsersController < ApplicationController
     end
 
     def create
-        if existing_user 
-            # binding.pry
-            login_user(existing_user)
-        else
-            signup_user
-        end
+        @user = User.new(user_params)
+            if @user.save
+                login_user(@user)
+            else
+                render :new
+            end
+
+        # if existing_user 
+        #     login_user(existing_user)
+        # else
+        #     signup_user
+        # end
     end
 
     def show
         @user = User.find(params[:id])
-        # binding.pry
         @workouts = Workout.all
     end
 
@@ -53,14 +58,18 @@ class UsersController < ApplicationController
     
     
     def login_user(user)
-        return head(:forbidden) unless user.authenticate(params[:user][:password])
+        # return head(:forbidden) unless user.authenticate(params[:user][:password])
         session[:user_id] = user.id 
         redirect_to user_path(user)
     end
 
     def signup_user
-        @user = User.create(user_params)
-        set_session(@user)
-        redirect_to user_path(@user)
+        @user = User.new(user_params)
+        if @user.save 
+            set_session(@user)
+            redirect_to user_path(@user)
+        else
+            render :new 
+        end
     end
 end

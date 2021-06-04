@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         end
       
         session[:user_id] = @user.id
-        # binding.pry
+        binding.pry
         redirect_to user_path(@user)
     end
 

@@ -4,12 +4,10 @@ class WorkoutsController < ApplicationController
         @users = User.all
 
         if !params[:user].blank?
-            @workouts = Workout.where(creator: User.find(params[:user]).username)
-            # binding.pry
+            @workouts = Workout.by_creator(params[:user])
         else
             @workouts = Workout.all
         end
-
     end
 
 
@@ -19,8 +17,8 @@ class WorkoutsController < ApplicationController
     end
 
     def create
-        # @user = User.find(session[:id]) #replace with current_user
         @workout = current_user.workouts.create(workout_params.merge(creator: current_user.username))
+        # @user = User.find(session[:id]) #replace with current_user
         # @user.workouts << @workout
 
         redirect_to workout_path(@workout)
@@ -38,6 +36,7 @@ class WorkoutsController < ApplicationController
     def update
         @workout = Workout.find(params[:id])
         @workout.update(workout_params)
+
         redirect_to workout_path(@workout)
     end
 
@@ -45,6 +44,7 @@ class WorkoutsController < ApplicationController
         @workout = Workout.find(params[:id])
         @user = User.find(session[:id]) 
         @user.workouts.delete(@workout)
+        
         redirect_to user_path(@user)
     end
 
