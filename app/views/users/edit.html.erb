@@ -4,6 +4,10 @@
 <legend> <%= "#{current_user.first_name}'s Stats" %> </legend>
     <%= form_for current_user do |user_form| %>
 
+        <%= user_form.label :username %> 
+        <%= user_form.text_field :username %>
+            <br /> 
+            <br />
         <%= user_form.label :first_name %> 
         <%= user_form.text_field :first_name %> 
             <br /> 

@@ -11,9 +11,13 @@ class SessionsController < ApplicationController
             u.image = auth['info']['image']
             u.password_digest = "0"
         end
-      
+
         session[:user_id] = @user.id
-        binding.pry
+        @user = User.find(@user.id) 
+        @user.update(first_name: auth[:info][:name].split[0])
+        @user.update(last_name: auth[:info][:name].split[1])
+        @user.update(username: "ChangeMe#{rand(123).to_s}") unless !@user.username.empty?
+
         redirect_to user_path(@user)
     end
 

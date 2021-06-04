@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-        @user.update(bio: params[:user][:bio], birthday: params[:user][:birthday], height_inches: params[:user][:height_inches], weight_pounds: params[:user][:weight_pounds]) #update accordingly to account for Omniauth - add password and password confirmation
+        @user.update(username: params[:user][:username], bio: params[:user][:bio], birthday: params[:user][:birthday], height_inches: params[:user][:height_inches], weight_pounds: params[:user][:weight_pounds]) #update accordingly to account for Omniauth - add password and password confirmation
 
         redirect_to user_path(@user)
     end
