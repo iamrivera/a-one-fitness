@@ -1,5 +1,11 @@
 <br /> 
-
+<div>
+<h3>Filter Workouts:</h3>
+<%= form_tag("/workouts", method: "get") do %>
+    <%= select_tag "exercise", options_from_collection_for_select(@exercises, "id", "name"), include_blank: true %>
+    <%= submit_tag "Filter" %>
+<% end %>
+<br />
 <fieldset> 
 <legend> Workout Summary </legend> 
 Name: <%= @workout.name %> 

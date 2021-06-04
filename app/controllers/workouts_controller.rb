@@ -1,7 +1,15 @@
 class WorkoutsController < ApplicationController
     def index
-        @workouts = Workout.all
+    @workouts = Workout.all 
+        # # filter the @posts list based on user input
+        # if !params[:workout].blank?
+        #     @exercises = Exercise.where(workout: params[:workout])
+        # else
+        #     # if no filters are applied, show all posts
+        #     @exercises = Exercise.all
+        # end
     end
+
 
     def new
         @workout = Workout.new

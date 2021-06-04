@@ -1,0 +1,10 @@
+<h1> A1 Fitness Workouts </h1>
+<h3> Taking a Serious Stake in Your Fitness since 1831 <h3> 
+
+<h4> A1 Atheletes </h4> 
+<uL>
+    <% @users.each do |user| %> 
+        <li> <%= link_to user.username, user_path(user) %> </li>
+    <% end %> 
+</ul> 
+ 

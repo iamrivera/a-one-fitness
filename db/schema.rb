@@ -29,10 +29,13 @@ ActiveRecord::Schema.define(version: 2021_06_01_152438) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.string "name"
     t.string "first_name"
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
+    t.string "image"
+    t.string "uid"
     t.text "bio", default: "Please fill me in!"
     t.string "birthday", default: "Please fill me in!"
     t.integer "height_inches"

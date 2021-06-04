@@ -1,4 +1,8 @@
-<h1> Welcome <%= @user.first_name %> </h1> 
+<% if logged_in? %> 
+    <h1> Welcome <%= @user.first_name %> </h1> 
+<% else %> 
+    <h1> <%= "#{@user.first_name}'s Profile" %> </h1>
+<% end %> 
 
 <fieldset>
 <legend> <%= "#{@user.first_name}'s Basic Info" %> </legend>
@@ -42,5 +46,10 @@
 </fieldset> 
 <br />
 <br />
-<%= button_to "Create Your Own Workout", new_user_workout_path(@user), method: :get  %> 
+
+<% if !logged_in? %> 
+    Signup today to get started on your fitness journey!
+<% else %>
+    <%= button_to "Create Your Own Workout", new_user_workout_path(@user), method: :get  %> 
+<% end %> 
 

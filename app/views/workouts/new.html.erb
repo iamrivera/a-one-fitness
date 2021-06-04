@@ -21,9 +21,12 @@
             <br /> 
             <br /> 
 
-            Add A Custom Exercise:
+            Add a Custom Exercise:
             <%= workout_form.fields_for :exercises, @workout.exercises.build do |exercise| %> 
+                <p>
+                <%= exercise.label :name %> 
                 <%= exercise.text_field :name %>
+                </P>
             <% end %> 
 
             <%= workout_form.submit %> 

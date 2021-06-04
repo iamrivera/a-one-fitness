@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-    before_action :require_login
-    skip_before_action :require_login, only: [:new, :create, :show]
+    # before_action :require_login
+    # skip_before_action :require_login, only: [:new, :create, :show, :index]
 
     def index
-
+        @users = User.all
     end
 
     def new
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
     def create
         if existing_user 
+            binding.pry
             login_user(existing_user)
         else
             signup_user
@@ -24,12 +25,12 @@ class UsersController < ApplicationController
     end
 
     def edit
-        current_user
+        @user = User.find(params[:id])
     end
 
     def update
         @user = User.find(params[:id])
-        @user.update(bio: params[:user][:bio], birthday: params[:user][:birthday], height_inches: params[:user][:height_inches], weight_pounds: params[:user][:weight_pounds])
+        @user.update(bio: params[:user][:bio], birthday: params[:user][:birthday], height_inches: params[:user][:height_inches], weight_pounds: params[:user][:weight_pounds]) #update accordingly to account for Omniauth - add password and password confirmation
 
         redirect_to user_path(@user)
     end
@@ -46,14 +47,14 @@ class UsersController < ApplicationController
 
     
     def existing_user
-        @user = User.find_by(username: params[:user][:username])
+        user = User.find_by(username: params[:user][:username])
     end
     
     
     def login_user(user)
-        return head(:forbidden) unless @user.authenticate(params[:password])
-        session[:user_id] = @user.id 
-        redirect_to user_path(@user)
+        return head(:forbidden) unless user.authenticate(params[:user][:password])
+        session[:user_id] = user.id 
+        redirect_to user_path(user)
     end
 
     def signup_user
